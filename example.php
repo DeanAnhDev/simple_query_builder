@@ -18,7 +18,7 @@ $pdo = new PDO($dsn, $config['username'], $config['password'], $options);
 // Khởi tạo QueryBuilder
 $qb = new QueryBuilder($pdo);
 
-// ✅ Insert user
+// Insert user
 $qb->table('users')->insert([
     'name' => 'Alice',
     'email' => 'alice@example.com',
@@ -26,7 +26,7 @@ $qb->table('users')->insert([
     'status' => 'active',
 ]);
 
-// ✅ Select users có status = 'active'
+// Select users có status = 'active'
 $users = $qb->table('users')
     ->select(['id', 'name', 'email', 'status'])
     ->where('status', '=', 'active')
