@@ -1,0 +1,14 @@
+{
+    "name": "theanh/query-builder",
+    "description": "Simple, dependency-free PDO query builder with method chaining.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "QueryBuilder\\": "src/"
+        }
+    },
+    "require": {
+        "fakerphp/faker": "^1.24",
+        "php": ">=7.4"
+    }
+}

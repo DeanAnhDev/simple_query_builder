@@ -1,0 +1,30 @@
+# Composer
+/vendor/
+
+# Environment
+.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Cache
+cache/
+*.cache
+*.tmp
+
+# PHPUnit
+.phpunit.result.cache
+coverage/
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+
+# OS-specific
+ehthumbs.db
+Icon?
