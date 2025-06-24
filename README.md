@@ -15,7 +15,7 @@ Không phụ thuộc bên ngoài, chỉ dùng PHP thuần
 ## 📦 Installation
 
 ```bash
-composer require theanh/query-builder
+composer require deananhdev/query-builder
 
 
 ```
