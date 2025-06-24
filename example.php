@@ -8,23 +8,20 @@ use QueryBuilder\QueryBuilder;
 $config = require __DIR__ . '/config/database.php';
 
 $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config['charset']}";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
 
-$pdo = new PDO($dsn, $config['username'], $config['password'], $options);
+
+$pdo = new PDO($dsn, $config['username'], $config['password']);
 
 // Khởi tạo QueryBuilder
 $qb = new QueryBuilder($pdo);
 
 // Insert user
-$qb->table('users')->insert([
-    'name' => 'Alice',
-    'email' => 'alice@example.com',
-    'password' => password_hash('secret123', PASSWORD_DEFAULT),
-    'status' => 'active',
-]);
+//$qb->table('users')->insert([
+//    'name' => 'Alice',
+//    'email' => 'alice@example.com',
+//    'password' => password_hash('secret123', PASSWORD_DEFAULT),
+//    'status' => 'active',
+//]);
 
 // Select users có status = 'active'
 $users = $qb->table('users')
