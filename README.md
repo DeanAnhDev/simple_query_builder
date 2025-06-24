@@ -17,9 +17,12 @@ Không phụ thuộc bên ngoài, chỉ dùng PHP thuần
 ```bash
 composer require deananhdev/query-builder
 
-
 ```
-Usage Example
+
+### Yêu cầu: PHP >= 7.4
+
+
+# Usage Example
 ```php
 <?php
 
@@ -49,7 +52,7 @@ print_r($users);
 
 ```
 
-Config:
+## Config:
 ```php
 <?php
 return [
