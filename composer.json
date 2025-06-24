@@ -2,6 +2,7 @@
     "name": "deananhdev/query-builder",
     "description": "Simple, dependency-free PDO query builder with method chaining.",
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "QueryBuilder\\": "src/"
