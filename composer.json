@@ -1,5 +1,5 @@
 {
-    "name": "theanh/query-builder",
+    "name": "deananhdev/query-builder",
     "description": "Simple, dependency-free PDO query builder with method chaining.",
     "type": "library",
     "autoload": {
