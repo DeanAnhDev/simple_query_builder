@@ -21,34 +21,31 @@ composer require deananhdev/query-builder
 ```
 Usage Example
 ```php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
 use QueryBuilder\QueryBuilder;
 
-$config = require 'config/database.php';
-$pdo = new PDO($config['dsn'], $config['username'], $config['password']);
+// Load cấu hình từ file config
+$config = require __DIR__ . '/config/database.php';
 
+$dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config['charset']}";
+
+$pdo = new PDO($dsn, $config['username'], $config['password']);
+
+// Khởi tạo QueryBuilder
 $qb = new QueryBuilder($pdo);
 
-// SELECT
+// Select users có status = 'active'
 $users = $qb->table('users')
-            ->select(['id', 'name'])
-            ->where('status', '=', 'active')
-            ->get();
+    ->select(['id', 'name', 'email', 'status'])
+    ->where('status', '=', 'active')
+    ->get();
 
-// INSERT
-$qb->table('users')->insert([
-    'name' => 'Alice',
-    'email' => 'alice@example.com'
-]);
+echo "Danh sách user active:\n";
+print_r($users);
 
-// UPDATE
-$qb->table('users')
-   ->where('id', '=', 1)
-   ->update(['name' => 'Bob']);
-
-// DELETE
-$qb->table('users')
-   ->where('id', '=', 2)
-   ->delete();
 
 ```
 
