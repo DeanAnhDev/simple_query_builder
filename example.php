@@ -13,31 +13,44 @@ $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config
 $pdo = new PDO($dsn, $config['username'], $config['password']);
 
 // Khởi tạo QueryBuilder
-$qb = new QueryBuilder($pdo);
+$db = new QueryBuilder($pdo);
 
-// Insert user
-//$qb->table('users')->insert([
-//    'name' => 'Alice',
-//    'email' => 'alice@example.com',
-//    'password' => password_hash('secret123', PASSWORD_DEFAULT),
-//    'status' => 'active',
-//]);
+$id = $db->table('users')->insert([
+    'name' => 'Alice',
+    'email' => 'alice1@example.com',
+]);
+echo "Inserted ID: $id\n";
 
-// Select users có status = 'active'
-$users = $qb->table('users')
-    ->select(['id', 'name', 'email', 'status'])
-    ->where('status', '=', 'active')
-    ->get();
-
-echo "Danh sách user active:\n";
+$users = $db->table('users')->select()->get();
 print_r($users);
 
-// Update user có id = 1
-//$qb->table('users')
-//    ->where('id', '=', 1)
-//    ->update(['email' => 'alice.updated@example.com']);
+$user = $db->table('users')
+    ->where('name', '=', 'Alice')
+    ->first();
+print_r($user);
 
-// Delete user có id = 2
-//$qb->table('users')
-//    ->where('id', '=', 2)
-//    ->delete();
+$count = $db->table('users')->count();
+echo "User count: $count\n";
+
+$names = $db->table('users')->pluck('name');
+print_r($names);
+
+$users = $db->table('users')
+    ->orderBy('id', 'desc')
+    ->limit(2)
+    ->get();
+print_r($users);
+
+
+$results = $db->table('users')
+    ->select(['name', 'COUNT(*) as total'])
+    ->groupBy('name')
+    ->having('total', '>', 0)
+    ->get();
+print_r($results);
+
+$joined = $db->table('users')
+    ->select(['users.name', 'orders.product_name'])
+    ->join('orders', 'users.id', '=', 'orders.user_id')
+    ->get();
+print_r($joined);
